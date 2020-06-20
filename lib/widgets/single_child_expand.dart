@@ -21,10 +21,11 @@ class _SingleChildExpandState extends State<SingleChildExpand> {
     InfoModel info = DATA.firstWhere((element) => element.id == widget.id);
 
     return Container(
-      padding: EdgeInsets.only(bottom: 5),
+      padding: EdgeInsets.only(bottom: 5,left: 20,right: 20),
       color: Colors.white,
       //height: 20,
       child: Card(
+        color: Colors.white,
         elevation: 3,
         child: ExpansionTile(
           onExpansionChanged: (value) {
@@ -39,7 +40,7 @@ class _SingleChildExpandState extends State<SingleChildExpand> {
               ? Text(
                   info.categoryName,
                   style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
                 )

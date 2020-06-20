@@ -1,62 +1,35 @@
-import 'package:antopolis_first/widgets/all_info_list.dart';
-import 'package:antopolis_first/widgets/info_header.dart';
+import 'package:antopolis_first/models/dummy_user_data.dart';
+import 'package:antopolis_first/models/dumyy_data.dart';
+import 'package:antopolis_first/models/info_model.dart';
+import 'package:antopolis_first/models/info_user.dart';
+import 'package:antopolis_first/widgets/main_header.dart';
+import 'package:antopolis_first/widgets/single_child_expand.dart';
 import 'package:flutter/material.dart';
 
 class InfoScreen extends StatelessWidget {
-  String profile_pic_url = 'images/42.jpg';
-  String name = 'Erza Scarlet';
-  String position = 'Sofware Engineer';
+ 
+
+  InfoUser user1 = USER_DATA.firstWhere((element) => element.id == 0);
+  List<InfoModel> allitems = DATA;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-              child: Container(
-          child: Column(
+      body: Container(
+      color: Colors.white,
+      child: ListView.builder(
+        
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
 
-            children: <Widget>[
-              Stack(
-                alignment: Alignment.bottomCenter,
-                children: <Widget>[
-                 Container(
-                child: Image.asset(profile_pic_url,fit: BoxFit.cover,),
-                height: 400,
-                width: double.infinity,
-              ),
-              Container(
-                child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-
-                  Text(name,style: TextStyle(fontSize: 35),),
-                 
-                ],),
-                height: 100,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(80)),
-                ),
-
-              ),
-              
-
-
-              ],),
-              Container(
-                color: Colors.white,
-                child: InfoHeader(position: 'Software Engineer',gender: 'Female',number: '+8801681234232',mail: 'erza@antopolis.com',bloodgroup: 'O+',),
-
-              ),
-              
-              AllInfoList(),
-
-              
-             
-
-            ],
-          ),
-        ),
+        //padding: EdgeInsets.all(10),
+        itemBuilder: (ctx, index) {
+          return index == 0 ?  MainHeader(user1) :
+            SingleChildExpand(allitems[index-1].id);
+        },
+        itemCount: allitems.length+1,
       ),
+    ),
       
     );
   }
