@@ -23,17 +23,12 @@ class _ExpandInsideState extends State<ExpandInside> {
     List<String> keys = info.subCategories.keys.toList();
     List<String> values = info.subCategories.values.toList();
 
-    
-
-    
     return Container(
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         padding: EdgeInsets.all(10),
         itemBuilder: (ctx, index) {
-
-          
           return Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,17 +46,19 @@ class _ExpandInsideState extends State<ExpandInside> {
                     ),
                     Container(
                       padding: EdgeInsets.all(5),
-                      child: index == 0 ? IconButton(
-                        onPressed: () {
-                          setState(() {
-                            edit = !edit;
-                          });
-                        },
-                        icon: Icon(
-                          FontAwesomeIcons.pencilAlt,
-                          size: 15,
-                        ),
-                      ) : Text(''),
+                      child: index == 0
+                          ? IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  edit = !edit;
+                                });
+                              },
+                              icon: Icon(
+                                FontAwesomeIcons.pencilAlt,
+                                size: 15,
+                              ),
+                            )
+                          : Text(''),
                     ),
                   ],
                 ),
@@ -77,41 +74,13 @@ class _ExpandInsideState extends State<ExpandInside> {
                       : TextFormField(
                           initialValue: values[index],
                           onChanged: (value) {
-                            setState(() {
-                              
-                              values[index] = value;
-                              info.subCategories[keys[index]] = value;
-                              keys = info.subCategories.keys.toList();
-                              values = info.subCategories.values.toList();
-
-                            });
-                          },
-                          // onFieldSubmitted: (value) {
-                          //   setState(() {
-                              
-                          //     values[index] = value;
-                          //     info.subCategories[keys[index]] = value;
-                          //     keys = info.subCategories.keys.toList();
-                          //     values = info.subCategories.values.toList();
-
-                          //   });
-                          // },
-                          // onSaved: (value) {
-                          //   setState(() {
-                              
-                          //     values[index] = value;
-                          //     info.subCategories[keys[index]] = value;
-                          //     keys = info.subCategories.keys.toList();
-                          //     values = info.subCategories.values.toList();
-
-                          //   });
-                          // },
-                          
-
-                          keyboardType: TextInputType.text,
-                          style: TextStyle(fontSize: 16,),
-                          decoration: new InputDecoration(
                             
+                          },
+                          keyboardType: TextInputType.text,
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                          decoration: new InputDecoration(
                             fillColor: Colors.grey[300],
                             filled: true,
                             border: new OutlineInputBorder(
